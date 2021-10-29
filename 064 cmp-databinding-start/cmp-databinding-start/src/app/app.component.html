@@ -1,0 +1,20 @@
+
+
+<div class="container" #container>
+  <app-server-unit (serverCreated)="onServerAddedCB($event)" (blueServerCreated)="onBluePrintCB($event)"></app-server-unit>
+
+  <hr>
+  <button class="btn btn-danger" (click)="changePropertyValue()">onChange</button>
+  <button class="btn btn-info" (click)="onDestroy()">DESTROY first component</button>
+  <app-display-server *ngFor="let server of serverElements" [displayUnit]="server" [namex]="server.name">
+    <p #contentParagraph>
+      <strong *ngIf="server.type === 'server'" style="color: red">{{ server.content }}</strong>
+      <em *ngIf="server.type === 'blueprint'">{{ server.content }}</em>
+      <!---------------------
+      get access to content which stored in other component but then passed on via ng-content---
+     ------>
+    </p>
+    <app-testComponent></app-testComponent>
+  </app-display-server>
+
+</div>

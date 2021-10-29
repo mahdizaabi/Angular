@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h1>welcome</h1>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/servers">Servers</a></li>
+        <!--- ../server go app one level and attach the path ---->
+        <!--- routerLink is a directive --->
+        <li role="presentation" routerLinkActive="active"><a routerLink='/users'>Users</a></li>
+        <!-----[routerLink]="/users"-Like this angular will look
+        for a property with the name '/users'
+        * path without '/' will be treated as a relative path = append it to the existing url in browser
+        --->
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet>
+      </router-outlet>
+    </div>
+  </div>
+</div>

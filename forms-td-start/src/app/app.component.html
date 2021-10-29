@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" [(ngModel)]="userName" class="form-control" name="username" required>
+          </div>
+          <button class="btn btn-default" (click)="suggestUserName()" type="button">Suggest an Username</button>
+
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email"
+                   id="email"
+                   [ngModel]=""
+                   name="email"
+                   class="form-control"
+                   email
+                   required
+                   #email="ngModel"
+                   (ngModelChange)="handelChange($event)"
+            >
+            <span class="help-block"
+                  [style]="{color:'red'}"
+                  *ngIf="!email.valid && email.touched">Please enter a valid value</span>
+          </div>
+        </div>
+        <p *ngIf="userData.touched && !userData.valid" [style]="{color:'red'}">UserData Group is not valid</p>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select
+            [ngModel]="default_question"
+            name="secret"
+            id="secret"
+            class="form-control">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea
+            name="details" id="" cols="30" rows="10"
+            [(ngModel)]="twoWayBindingData"
+            class="form-control"
+          ></textarea>
+          <p>Your Replay is {{twoWayBindingData}}</p>
+        </div>
+        <div>
+          <div class="radio" *ngFor="let gender of genders">
+            <label [for]="gender">
+              <input type="radio" name="gender" [id]="gender"
+                     [(ngModel)]="genderValue" [value]="gender" #selected='ngModel'>
+              {{gender}}
+            </label>
+          </div>
+          <p>Selected Gender: {{genderValue}}</p>
+        </div>
+
+        <div class="form-group">
+          <label for="adresse">Adresse</label>
+          <input type="text" name="adresse" id="adresse" ngModel #adresse="ngModel" required>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn
+        btn-success"
+                  type="button"
+                  (click)="handelClick(email,userData)"
+          >extract local values
+          </button>
+
+          <button class="btn
+        btn-primary"
+                  type="submit"
+                  [disabled]="!f.valid"
+          >Submit
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <p> adresse: {{adresse.value}} is {{adresse.valid}}</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>your data:</h3>
+      <p>Username:{{user.username}} </p>
+      <p>Mail: {{user.email}} </p>
+      <p>Secret question: {{user.secret}} </p>
+      <p>Adresse: {{user.adresse}}</p>
+      <p>gender: {{user.gender}}</p>
+    </div>
+  </div>
+</div>

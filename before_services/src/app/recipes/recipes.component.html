@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-5 bg-warning">
+    <app-recipe-list
+      [recipes]="recipes"
+      [test]="name"
+      (recipeWasSelected)="selectedRecipe= $event"
+     >
+      <!----we could also do : (recipeWasSelected) = setRecipe($event)"
+      but here we are targeting directly the property inside the class
+      --->
+    </app-recipe-list>
+  </div>
+  <div class="col-sm-7 bg-danger">
+    <app-recipe-detail *ngIf="selectedRecipe; else elseBlock"
+                       [selectedRecipe]="selectedRecipe" >
+    </app-recipe-detail>
+    <ng-template #elseBlock>
+      <p>select a Recipe!</p>
+    </ng-template>
+  </div>
+</div>

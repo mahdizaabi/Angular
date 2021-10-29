@@ -1,0 +1,41 @@
+<app-header (activePath)="setActiveRoute($event)"  ></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 bg-info">
+      <app-recipes *ngIf="path === 'recipes'; else elseBlock" ></app-recipes>
+      <ng-template  #elseBlock>
+        <app-shopping-list ></app-shopping-list>
+      </ng-template>
+    </div>
+  </div>
+  <button class="btn btn-danger" (click)="value = value < 15 ? value + 5 : 5">change number</button>
+  <div [ngSwitch]="value">
+    <p *ngSwitchCase="5">value is 5</p>
+    <p *ngSwitchCase="10">value is 10</p>
+    <p *ngSwitchCase="15">value is 15</p>
+    <p *ngSwitchDefault>{{value}}</p>
+  </div>
+</div>
+<h5 appBasicHighlight *appUnLess="6 % 2 === 2">test-basic directive *appUnLess="6 % 2 === 2"</h5>
+<h5 appImprovedHighlight>test-improved directive</h5>
+<h5 appImprovedHighlight2>test-improved directive2</h5>
+<h5 [appImprovedHighlight3]="'orange'" defaultColor='green'>test-improved directive3</h5>
+
+
+<!---- propertybinding [defaultColor]="'green'" === defaultColor="green"
+ !!! be sure that is not an existing attribute for that element!
+ --->
+
+<!---
+<div *ngIf='!onlyOdd>
+<li> ...... </li>
+</div>
+
+this is get transformed by Angular to:
+
+<ng-template [ngIf]="!onlyOdd">
+<div> ...... </div>
+</ng-template>
+
+
+------>
