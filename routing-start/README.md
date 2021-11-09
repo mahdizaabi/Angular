@@ -1,27 +1,17 @@
-# MyFirstApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
-## Development server
+...
+this.router.navigate(["/absolute/path"]);
+this.router.navigate(["../../parent"], {relativeTo: this.route});
+this.router.navigate(["../sibling"],   {relativeTo: this.route});
+this.router.navigate(["./child"],      {relativeTo: this.route}); // or
+this.router.navigate(["child"],        {relativeTo: this.route});
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+// with route param     ../../parent;abc=xyz
+this.router.navigate(["../../parent", {abc: 'xyz'}], {relativeTo: this.route});
+// with query param and fragment   ../../parent?p1=value1&p2=v2#frag
+this.router.navigate(["../../parent"], {relativeTo: this.route, 
+    queryParams: {p1: 'value', p2: 'v2'}, fragment: 'frag'});
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+// navigate without updating the URL 
+this.router.navigate(["../../parent"], {relativeTo: this.route, skipLocationChange: true});
